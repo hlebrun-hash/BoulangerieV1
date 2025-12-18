@@ -1,18 +1,17 @@
 /* Main CSS - Pains et Gourmandises */
 /* Resets & Base */
 :root {
-    /* Nouvelle Palette "Pains et Gourmandises" Premium */
+    /* Palette "Luxe Minimaliste" (Faite sur mesure) */
 
     /* Dominante (Fond) : Blanc Porcelaine */
     --color-light: #FAFAF8;
-    /* Alias pour compatibilité si "light" est utilisé comme fond */
 
     /* Dominante (Texte/Fond) : Noir Charbon */
     --color-text: #121212;
 
-    /* Accent (Luxe) : Or Antique */
-    --color-primary: #C5A065;
-    --color-accent: #C5A065;
+    /* Accent (Primaire) : Noir Charbon (Utilisé comme accent principal dans ce thème monochrome) */
+    --color-primary: #121212;
+    --color-accent: #121212;
 
     /* Secondaire (Détails/Footer) : Gris Ardoise */
     --color-dark: #2C2C2C;
@@ -23,9 +22,8 @@
     /* Autres */
     --color-white: #FFFFFF;
     --color-secondary: #FAFAF8;
-    /* Harmonisation avec le fond principal */
 
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Lato', sans-serif;
     --font-body: 'Lato', sans-serif;
     --spacing-container: 1200px;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -203,7 +201,6 @@ nav {
 
 .hero-title span {
     color: var(--color-primary);
-    font-style: italic;
 }
 
 .hero-description {
