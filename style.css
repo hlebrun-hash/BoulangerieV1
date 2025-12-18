@@ -199,9 +199,7 @@ nav {
     color: var(--color-dark);
 }
 
-.hero-title span {
-    color: var(--color-primary);
-}
+
 
 .hero-description {
     font-size: 1.2rem;
