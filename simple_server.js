@@ -22,7 +22,9 @@ const mimeTypes = {
 };
 
 http.createServer(function (request, response) {
-    let filePath = '.' + request.url;
+    // Decode URL to handle spaces and special characters appropriately
+    const safeUrl = decodeURI(request.url);
+    let filePath = path.join(__dirname, safeUrl);
 
     try {
         // If it sends to a directory, checking if it has a trailing slash
@@ -46,7 +48,7 @@ http.createServer(function (request, response) {
     fs.readFile(filePath, function (error, content) {
         if (error) {
             if (error.code == 'ENOENT') {
-                fs.readFile('./404.html', function (error, content) {
+                fs.readFile(path.join(__dirname, '404.html'), function (error, content) {
                     if (error) {
                         response.writeHead(404);
                         response.end('404 Not Found', 'utf-8');
