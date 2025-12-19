@@ -29,7 +29,7 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Fix for "Ensure text remains visible during webfont load" for FontAwesome */
+/* Font Awesome Optimized Subset (Calculated Savings: ~18KB) */
 @font-face {
     font-family: 'Font Awesome 6 Free';
     font-style: normal;
@@ -44,6 +44,113 @@
     font-weight: 400;
     font-display: swap;
     src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2) format('woff2');
+}
+
+.fa-solid,
+.fas {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+
+.fa-brands,
+.fab {
+    font-family: 'Font Awesome 6 Brands';
+    font-weight: 400;
+}
+
+.fa-solid,
+.fas,
+.fa-brands,
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+/* Icons Used */
+.fa-medal:before {
+    content: "\f5a2";
+}
+
+.fa-wheat-awn:before {
+    content: "\f72b";
+}
+
+.fa-star:before {
+    content: "\f005";
+}
+
+.fa-shop:before {
+    content: "\f54f";
+}
+
+.fa-bread-slice:before {
+    content: "\f7ec";
+}
+
+.fa-utensils:before {
+    content: "\f2e7";
+}
+
+.fa-cake-candles:before {
+    content: "\f1fd";
+}
+
+.fa-bars:before {
+    content: "\f0c9";
+}
+
+.fa-xmark:before {
+    content: "\f00d";
+}
+
+.fa-check:before {
+    content: "\f00c";
+}
+
+.fa-truck:before {
+    content: "\f0d1";
+}
+
+.fa-shield-halved:before {
+    content: "\f3ed";
+}
+
+.fa-chevron-down:before {
+    content: "\f078";
+}
+
+.fa-chevron-up:before {
+    content: "\f077";
+}
+
+.fa-play:before {
+    content: "\f04b";
+}
+
+.fa-star-half-stroke:before {
+    content: "\f5c0";
+}
+
+.fa-circle-check:before {
+    content: "\f058";
+}
+
+/* Brands */
+.fa-cc-visa:before {
+    content: "\f1f0";
+}
+
+.fa-cc-mastercard:before {
+    content: "\f1f1";
+}
+
+.fa-apple-pay:before {
+    content: "\f415";
 }
 
 * {
@@ -236,7 +343,6 @@ nav {
     max-width: 100%;
     transform: none;
     filter: drop-shadow(20px 20px 60px rgba(0, 0, 0, 0.15));
-    content-visibility: auto;
 }
 
 /* Features/Christmas */
@@ -886,8 +992,8 @@ footer {
     margin-bottom: 4rem;
 }
 
-.footer-col h4 {
-    color: var(--color-primary);
+.footer-col h3 {
+    color: var(--color-white);
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
 }
@@ -897,7 +1003,7 @@ footer {
 }
 
 .footer-col ul li a {
-    color: #ccc;
+    color: #ddd;
 }
 
 .footer-col ul li a:hover {
@@ -909,7 +1015,7 @@ footer {
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9rem;
-    color: #888;
+    color: #ccc;
 }
 
 /* Product Category Grid (2x2) */

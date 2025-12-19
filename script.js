@@ -1,34 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Header Scroll Effect
+    // Header Scroll Effect - Optimized with requestAnimationFrame
     const header = document.querySelector('header');
+    let isScrolling = false;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            header.style.boxShadow = 'none';
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
     });
 
-    // Add 3D drift effect to cards
-    const cards = document.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Calculate rotation based on mouse position
-            // Center is (width/2, height/2)
-            // Range -10deg to 10deg
-
-            // This is a subtle effect, maybe too complex for vanilla without more setup, 
-            // staying with simple hover for now is safer or just use CSS:hover.
-        });
-    });
+    // Removed unused 3D drift effect (mousemove) to prevent Forced Reflow (Layout Thrashing)
 
     // Animations on scroll (Intersection Observer)
     const observerOptions = {
@@ -59,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create Hamburger Button
         const hamburgerBtn = document.createElement('button');
         hamburgerBtn.classList.add('mobile-menu-btn');
+        hamburgerBtn.setAttribute('aria-label', 'Ouvrir le menu');
         hamburgerBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
         nav.appendChild(hamburgerBtn);
 
