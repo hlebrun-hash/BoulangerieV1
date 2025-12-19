@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Header Scroll Effect
-    // Header Scroll Effect - Optimized with requestAnimationFrame
+    // Header Scroll Effect - Optimized with Intersection Observer
     const header = document.querySelector('header');
-    let isScrolling = false;
+    const scrollTrigger = document.getElementById('scroll-trigger');
 
-    window.addEventListener('scroll', () => {
-        if (!isScrolling) {
-            window.requestAnimationFrame(() => {
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-                } else {
-                    header.style.boxShadow = 'none';
-                    header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                }
-                isScrolling = false;
-            });
-            isScrolling = true;
-        }
-    });
+    if (header && scrollTrigger) {
+        const headerObserver = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            if (!entry.isIntersecting) {
+                // Scrolled down
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                // At the top
+                header.style.boxShadow = 'none';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        }, { threshold: 0 });
+
+        headerObserver.observe(scrollTrigger);
+    }
 
     // Removed unused 3D drift effect (mousemove) to prevent Forced Reflow (Layout Thrashing)
 

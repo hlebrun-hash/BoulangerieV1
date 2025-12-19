@@ -9,11 +9,13 @@
         content="Découvrez nos pains artisanaux, pâtisseries fines et offre traiteur. L'excellence pour vos fêtes et votre quotidien.">
 
     <!-- Preload Hero Image (LCP Optimization) -->
-    <link rel="preload" as="image" href="assets/hero.webp">
+    <link rel="preload" as="image" imagesrcset="assets/hero_small.webp 800w, assets/hero.webp 1200w"
+        imagesizes="(max-width: 900px) 100vw, 600px">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" media="print" onload="this.media='all'">
@@ -206,6 +208,7 @@
         img {
             max-width: 100%;
             display: block;
+            height: auto;
         }
 
         ul {
@@ -445,7 +448,7 @@
         }
 
         .card p {
-            color: #777;
+            color: #444;
             margin-bottom: 1.5rem;
         }
 
@@ -1350,8 +1353,8 @@
 </head>
 
 <body>
-
-
+    <div id="scroll-trigger"
+        style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
 
     <!-- Header -->
     <header>
