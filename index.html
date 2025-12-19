@@ -603,7 +603,9 @@
         }
 
         .card-image img {
-            width: 80%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
@@ -1533,7 +1535,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Pains et Gourmandises</div>
+                <a href="/" class="logo">Pains et Gourmandises</a>
                 <div class="nav-links">
                     <a href="/" class="active">Accueil</a>
                     <a href="/produits">Nos Produits</a>
@@ -1602,9 +1604,8 @@
 
                 <a href="/produits/pains" class="card">
                     <span class="badge-best-seller">Best-Seller</span>
-                    <div class="card-image"
-                        style="height: 250px; background-color: #FAEDCD; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-bread-slice" style="font-size: 4rem; color: #121212;"></i>
+                    <div class="card-image" style="height: 250px;">
+                        <img src="assets/la_tradition_optimized.webp" alt="L'Authentique Tradition" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3>L'Authentique Tradition</h3>
@@ -1613,9 +1614,8 @@
                 </a>
 
                 <a href="/produits/sandwiches" class="card">
-                    <div class="card-image"
-                        style="height: 250px; background-color: #FAEDCD; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-utensils" style="font-size: 4rem; color: #121212;"></i>
+                    <div class="card-image" style="height: 250px;">
+                        <img src="assets/le_parisien_optimized.webp" alt="Le Parisien Signature" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3>Le Parisien Signature</h3>
@@ -1624,9 +1624,8 @@
                 </a>
 
                 <a href="/produits/desserts" class="card">
-                    <div class="card-image"
-                        style="height: 250px; background-color: #FAEDCD; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-cake-candles" style="font-size: 4rem; color: #121212;"></i>
+                    <div class="card-image" style="height: 250px;">
+                        <img src="assets/eclairs_signature_optimized.webp" alt="Les Éclairs Signature" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3>Les Éclairs Signature</h3>
@@ -1635,9 +1634,8 @@
                 </a>
 
                 <a href="/produits/pains" class="card">
-                    <div class="card-image"
-                        style="height: 250px; background-color: #FAEDCD; display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-wheat-awn" style="font-size: 4rem; color: #121212;"></i>
+                    <div class="card-image" style="height: 250px;">
+                        <img src="assets/pain_campagne_optimized.webp" alt="Le Rustique de Campagne" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3>Le Rustique de Campagne</h3>
