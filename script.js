@@ -23,25 +23,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Removed unused 3D drift effect (mousemove) to prevent Forced Reflow (Layout Thrashing)
 
-    // Animations on scroll (Intersection Observer)
+    // Animations on scroll (Intersection Observer) - Optimized to prevent Forced Reflow
     const observerOptions = {
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before element is visible
     };
 
     const observer = new IntersectionObserver((entries) => {
+        // Batch DOM reads and writes to prevent layout thrashing
+        const elementsToAnimate = [];
+
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                elementsToAnimate.push(entry.target);
             }
         });
+
+        // Use requestAnimationFrame to batch style changes
+        if (elementsToAnimate.length > 0) {
+            requestAnimationFrame(() => {
+                elementsToAnimate.forEach(el => {
+                    el.classList.add('animate-in');
+                });
+            });
+        }
     }, observerOptions);
 
     const hiddenElements = document.querySelectorAll('.section-title, .card, .hero-content');
     hiddenElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease-out';
+        el.classList.add('fade-in-element');
         observer.observe(el);
     });
     // Mobile Menu Logic
@@ -62,17 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(overlay);
 
         function toggleMenu() {
-            navLinks.classList.toggle('active');
-            overlay.classList.toggle('active');
+            const isActive = navLinks.classList.contains('active');
 
-            // Change icon
-            if (navLinks.classList.contains('active')) {
-                hamburgerBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            } else {
-                hamburgerBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-                document.body.style.overflow = '';
-            }
+            // Batch all DOM changes together using requestAnimationFrame
+            requestAnimationFrame(() => {
+                navLinks.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+
+                // Change icon
+                if (!isActive) {
+                    hamburgerBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                } else {
+                    hamburgerBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                }
+            });
         }
 
         hamburgerBtn.addEventListener('click', toggleMenu);
@@ -86,15 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // See More Reviews Logic (Mobile)
+    // See More Reviews Logic (Mobile) - Optimized to prevent Forced Reflow
     const seeMoreBtn = document.getElementById('see-more-reviews');
     if (seeMoreBtn) {
         seeMoreBtn.addEventListener('click', () => {
-            const hiddenReviews = document.querySelectorAll('.mobile-hidden-review');
-            hiddenReviews.forEach(review => {
-                review.classList.add('reveal');
+            requestAnimationFrame(() => {
+                const hiddenReviews = document.querySelectorAll('.mobile-hidden-review');
+                hiddenReviews.forEach(review => {
+                    review.classList.add('reveal');
+                });
+                seeMoreBtn.classList.add('hidden'); // Hide button after click
             });
-            seeMoreBtn.style.display = 'none'; // Hide button after click
         });
     }
 });

@@ -9,12 +9,20 @@
         content="Découvrez nos pains artisanaux, pâtisseries fines et offre traiteur. L'excellence pour vos fêtes et votre quotidien.">
 
     <!-- Preload Hero Image (LCP Optimization) -->
-    <link rel="preload" as="image" imagesrcset="assets/hero_small.webp 800w, assets/hero.webp 1200w"
-        imagesizes="(max-width: 900px) 100vw, 600px" fetchpriority="high">
+    <link rel="preload" as="image"
+        imagesrcset="assets/hero_mobile.webp 288w, assets/hero_small.webp 400w, assets/hero_tablet.webp 600w, assets/hero.webp 1200w"
+        imagesizes="(max-width: 480px) 288px, (max-width: 768px) 400px, (max-width: 1024px) 600px, 600px"
+        fetchpriority="high">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload Critical Fonts (CLS Optimization) -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXg.woff2"
+        crossorigin>
+    <link rel="preload" as="font" type="font/woff2"
+        href="https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ.woff2" crossorigin>
 
 
     <!-- Icons (Inline Optimized in style.css) -->
@@ -48,7 +56,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjxAwXjeu.woff2) format('woff2');
             unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
         }
@@ -58,7 +66,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHjx4wXg.woff2) format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
@@ -68,7 +76,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: 700;
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwaPGR_p.woff2) format('woff2');
             unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
         }
@@ -78,7 +86,7 @@
             font-family: 'Lato';
             font-style: normal;
             font-weight: 700;
-            font-display: swap;
+            font-display: optional;
             src: url(https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVSwiPGQ.woff2) format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
@@ -193,12 +201,14 @@
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Font Awesome Optimized Subset (Calculated Savings: ~18KB) */
+        /* Font Awesome Optimized Subset - Deferred Loading for Performance */
+        /* Using font-display: swap to defer rendering until font loads */
         @font-face {
             font-family: 'Font Awesome 6 Free';
             font-style: normal;
             font-weight: 900;
-            font-display: optional;
+            font-display: swap;
+            /* Changed from optional to swap - icons can wait */
             src: url(assets/fonts/fa-solid-900.woff2) format('woff2');
         }
 
@@ -206,7 +216,8 @@
             font-family: 'Font Awesome 6 Brands';
             font-style: normal;
             font-weight: 400;
-            font-display: optional;
+            font-display: swap;
+            /* Changed from optional to swap - icons can wait */
             src: url(assets/fonts/fa-brands-400.woff2) format('woff2');
         }
 
@@ -366,6 +377,27 @@
             padding: 0 2rem;
         }
 
+        /* Performance Optimization: Classes to prevent Forced Reflow */
+        .hidden {
+            display: none !important;
+        }
+
+        .menu-open {
+            overflow: hidden;
+        }
+
+        /* Fade-in Animation Classes (replaces inline styles) */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-element.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .btn {
             display: inline-block;
             padding: 1rem 2rem;
@@ -420,6 +452,9 @@
             font-size: 1.8rem;
             color: var(--color-accent);
             font-weight: 700;
+            min-height: 2.16rem;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links {
@@ -466,7 +501,7 @@
             background: linear-gradient(135deg, var(--color-light) 0%, #F5E6CA 100%);
             position: relative;
             overflow: hidden;
-            contain: layout;
+            contain: layout style paint;
         }
 
         .hero-content {
@@ -487,6 +522,7 @@
             font-size: 4.5rem;
             margin-bottom: 1.5rem;
             color: var(--color-dark);
+            min-height: 1.2em;
         }
 
 
@@ -503,10 +539,14 @@
             position: relative;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 400px;
         }
 
         .hero-image img {
             max-width: 100%;
+            height: auto;
+            aspect-ratio: 3/2;
             transform: none;
             filter: drop-shadow(20px 20px 60px rgba(0, 0, 0, 0.15));
         }
@@ -1508,7 +1548,7 @@
     <main>
         <!-- 1. Hero Section (Value Prop & CTA) -->
         <section class="hero">
-            <div class="container" style="display: flex; align-items: center; width: 100%;">
+            <div class="container" style="display: flex; align-items: center; width: 100%; min-height: 500px;">
                 <div class="hero-content">
                     <span class="hero-subtitle">Artisanat d'Excellence</span>
                     <h1 class="hero-title">Le Goût de l'Authenticité <br><span>chez Vous</span></h1>
@@ -1521,9 +1561,11 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/hero.webp" srcset="assets/hero_small.webp 800w, assets/hero.webp 1200w"
-                        sizes="(max-width: 900px) 100vw, 600px" alt="Pain artisanal et viennoiseries" width="600"
-                        height="400" loading="eager" fetchpriority="high">
+                    <img src="assets/hero_tablet.webp"
+                        srcset="assets/hero_mobile.webp 288w, assets/hero_small.webp 400w, assets/hero_tablet.webp 600w, assets/hero.webp 1200w"
+                        sizes="(max-width: 480px) 288px, (max-width: 768px) 400px, (max-width: 1024px) 600px, 600px"
+                        alt="Pain artisanal et viennoiseries" width="600" height="400" loading="eager"
+                        fetchpriority="high">
                 </div>
             </div>
         </section>
@@ -1796,6 +1838,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- Preload Font Awesome asynchronously after critical resources -->
+    <script>
+        // Defer Font Awesome loading to reduce critical path
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                const fontPreloads = [
+                    'assets/fonts/fa-solid-900.woff2',
+                    'assets/fonts/fa-brands-400.woff2'
+                ];
+                fontPreloads.forEach(font => {
+                    const link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'font';
+                    link.type = 'font/woff2';
+                    link.href = font;
+                    link.crossOrigin = 'anonymous';
+                    document.head.appendChild(link);
+                });
+            });
+        }
+    </script>
 
     <script src="script.js" defer></script>
 </body>
