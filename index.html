@@ -1426,6 +1426,64 @@
             }
         }
     </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Pains et Gourmandises",
+  "image": "https://painsetgourmandises.fr/assets/hero_tablet.webp",
+  "description": "Boulangerie artisanale à La Celle-Saint-Cloud. Pains au levain bio, viennoiseries maison et pâtisseries fines. Fabrication traditionnelle chaque matin depuis 2017.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Domaine Saint François d'Assise, 53 Av. de la Jonchère",
+    "addressLocality": "La Celle-Saint-Cloud",
+    "postalCode": "78170",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.8467,
+    "longitude": 2.1333
+  },
+  "telephone": "+33123456789",
+  "email": "bonjour@painsetgourmandises.fr",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "07:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "07:00",
+      "closes": "13:00"
+    }
+  ],
+  "priceRange": "€€",
+  "servesCuisine": "French",
+  "foundingDate": "2017",
+  "founder": {
+    "@type": "Person",
+    "name": "Pierre Lebrun",
+    "jobTitle": "Maître Boulanger"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "500"
+  },
+  "url": "https://painsetgourmandises.fr"
+}
+    </script>
 </head>
 
 <body>
@@ -1441,7 +1499,8 @@
                     <a href="/" class="active">Accueil</a>
                     <a href="/produits">Nos Produits</a>
                     <a href="/blog">Le Journal</a>
-                    <a href="/contact">Contact</a>
+                    <a href="a-propos.html">À Propos</a>
+                    <a href="contact">Contact</a>
                 </div>
 
             </nav>
@@ -1554,7 +1613,52 @@
             </div>
         </section>
 
-        <!-- 5. USP (Proposition de Valeur) -->
+        <!-- 5. Notre Mission (Le Pourquoi) -->
+        <section class="container" style="padding: 80px 1rem; max-width: 1200px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <!-- Image du boulanger -->
+                <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="assets/fondateur_pierre.webp" alt="Pierre Lebrun, Maître Boulanger et Fondateur"
+                        style="width: 100%; height: 500px; object-fit: cover;" loading="lazy">
+                </div>
+
+                <!-- Texte Mission -->
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--color-dark);">Notre Mission</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                        Depuis 2017, nous redonnons au pain ses lettres de noblesse en revenant aux méthodes
+                        ancestrales.
+                        Notre mission : vous offrir chaque jour des produits authentiques, fabriqués avec passion et
+                        respect
+                        des traditions boulangères. Du levain naturel aux farines bio, chaque geste compte pour sublimer
+                        votre quotidien.
+                    </p>
+                    <a href="/a-propos.html" class="btn"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                        En savoir plus sur notre histoire
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Version mobile : inverser l'ordre -->
+            <style>
+                @media (max-width: 768px) {
+                    section[style*="grid-template-columns: 1fr 1fr"]>div {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    section[style*="grid-template-columns: 1fr 1fr"]>div>div:first-child {
+                        order: 2;
+                        margin-top: 2rem;
+                    }
+
+                    section[style*="grid-template-columns: 1fr 1fr"]>div>div:last-child {
+                        order: 1;
+                    }
+                }
+            </style>
+        </section>
 
 
         <!-- 6. Love Wall (Preuve Sociale Visuelle) -->
@@ -1627,80 +1731,7 @@
             </div>
         </section>
 
-        <!-- 7. Storytelling -->
-        <section class="container">
-            <div class="story-section">
-                <div class="story-image">
-                    <img src="assets/founder.webp" srcset="assets/founder_small.webp 600w, assets/founder.webp 1000w"
-                        sizes="(max-width: 900px) 100vw, 500px" alt="Le Fondateur" width="500" height="500"
-                        loading="lazy" decoding="async">
-                </div>
-                <div class="story-content">
-                    <h2>L'Âme de la Boulangerie</h2>
-                    <div class="desktop-only">
-                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #555;">
-                            « On vous donne six mois, pas plus. »
-                        </p>
-                        <p style="margin-bottom: 1rem;">
-                            C’est ce que murmurait le quartier quand Sophie et Marc ont tourné la clé dans la serrure
-                            rouillée
-                            pour la première fois. C’était en 2015. À l’époque, l'endroit était sombre, la peinture
-                            s'écaillait
-                            et le vieux four semblait prêt à rendre l'âme. Mais le couple ne voyait pas les fissures aux
-                            murs ;
-                            ils voyaient leur avenir. Ils ont accroché l'enseigne « Pains et Gourmandises » comme on
-                            plante
-                            un
-                            drapeau au sommet d'une montagne.
-                        </p>
-                        <p style="margin-bottom: 1rem;">
-                            Pendant sept ans, ils ont travaillé sans relâche. Leurs mains se sont abîmées, mais leurs
-                            sourires
-                            sont restés intacts. Peu à peu, l'odeur du levain frais et de la viennoiserie pur beurre a
-                            remplacé
-                            le scepticisme des voisins par une fidélité sans faille. La boulangerie tournait à plein
-                            régime,
-                            mais le décor, lui, restait coincé dans le passé. Le talent de Marc et l'accueil chaleureux
-                            de
-                            Sophie méritaient un écrin à la hauteur de leur passion.
-                        </p>
-                        <p style="margin-bottom: 1rem; font-weight: bold;">
-                            Le grand virage a eu lieu en 2022.
-                        </p>
-                        <p style="margin-bottom: 1rem;">
-                            Ils ont pris le risque de fermer, de tout casser, de tout repenser. Pendant des semaines, la
-                            poussière des travaux a remplacé la farine. Quand le rideau s’est enfin relevé, le choc fut
-                            total.
-                            Fini le carrelage désuet et l'éclairage blafard. Place à des matériaux nobles, du bois
-                            clair,
-                            une
-                            vitrine moderne et une lumière chaleureuse qui sublime chaque baguette et chaque pâtisserie.
-                        </p>
-                        <p style="margin-bottom: 2rem;">
-                            Aujourd'hui, Pains et Gourmandises n'est plus seulement une boulangerie où l'on achète son
-                            pain.
-                            C'est le cœur battant du quartier, un lieu qui raconte l'histoire de deux passionnés qui ont
-                            su
-                            se
-                            réinventer sans jamais perdre leur âme.
-                        </p>
-                    </div>
 
-                    <div class="mobile-only">
-                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #555;">
-                            « On vous donne six mois, pas plus. »
-                        </p>
-                        <p style="margin-bottom: 2rem;">
-                            En 2015, Sophie et Marc ont repris une vieille boulangerie malgré le scepticisme général.
-                            Après
-                            sept ans de travail acharné et une rénovation complète en 2022, "Pains et Gourmandises" est
-                            devenu le cœur battant du quartier, alliant modernité et tradition artisanale.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
 
     </main>
 
