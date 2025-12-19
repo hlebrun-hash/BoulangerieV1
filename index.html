@@ -198,7 +198,7 @@
             font-family: 'Font Awesome 6 Free';
             font-style: normal;
             font-weight: 900;
-            font-display: swap;
+            font-display: optional;
             src: url(assets/fonts/fa-solid-900.woff2) format('woff2');
         }
 
@@ -206,7 +206,7 @@
             font-family: 'Font Awesome 6 Brands';
             font-style: normal;
             font-weight: 400;
-            font-display: swap;
+            font-display: optional;
             src: url(assets/fonts/fa-brands-400.woff2) format('woff2');
         }
 
@@ -466,6 +466,7 @@
             background: linear-gradient(135deg, var(--color-light) 0%, #F5E6CA 100%);
             position: relative;
             overflow: hidden;
+            contain: layout;
         }
 
         .hero-content {
