@@ -1641,20 +1641,21 @@
                 </div>
             </div>
 
-            <!-- Version mobile : inverser l'ordre -->
+            <!-- Version mobile : image avant le texte -->
             <style>
                 @media (max-width: 768px) {
-                    section[style*="grid-template-columns: 1fr 1fr"]>div {
-                        grid-template-columns: 1fr !important;
+                    section[style*="padding: 80px 1rem"]>div {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        gap: 2rem !important;
                     }
 
-                    section[style*="grid-template-columns: 1fr 1fr"]>div>div:first-child {
-                        order: 2;
-                        margin-top: 2rem;
+                    section[style*="padding: 80px 1rem"]>div>div:first-child {
+                        order: 1 !important;
                     }
 
-                    section[style*="grid-template-columns: 1fr 1fr"]>div>div:last-child {
-                        order: 1;
+                    section[style*="padding: 80px 1rem"]>div>div:last-child {
+                        order: 2 !important;
                     }
                 }
             </style>
