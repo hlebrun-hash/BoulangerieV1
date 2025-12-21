@@ -2,5 +2,8 @@
   "devDependencies": {
     "csso-cli": "^4.0.2",
     "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
   }
 }
