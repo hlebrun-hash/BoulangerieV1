@@ -241,6 +241,13 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+    /* Animation fluide */
+}
+
+/* Classe pour cacher le header */
+.header-hidden {
+    transform: translateY(-100%);
 }
 
 nav {
@@ -1312,9 +1319,30 @@ footer {
     .desktop-only {
         display: none;
     }
+}
 
-    /* Reveal class added by JS */
-    .mobile-hidden-review.reveal {
-        display: block;
-    }
+/* Reading Progress Bar */
+.reading-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    z-index: 1002;
+    /* Au-dessus du header */
+}
+
+.reading-progress-bar {
+    height: 100%;
+    background: #C69C6D;
+    /* Couleur Pain Doré (Gold/Bread) */
+    width: 0%;
+    transition: width 0.1s;
+}
+
+/* Reveal class added by JS */
+.mobile-hidden-review.reveal {
+    display: block;
+}
 }

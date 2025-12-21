@@ -1,25 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Header Scroll Effect
-    // Header Scroll Effect - Optimized with Intersection Observer
+    // Smart Sticky Header
     const header = document.querySelector('header');
-    const scrollTrigger = document.getElementById('scroll-trigger');
+    let lastScrollTop = 0;
+    const scrollThreshold = 100; // Seuil minimum avant de commencer à cacher
 
-    if (header && scrollTrigger) {
-        const headerObserver = new IntersectionObserver((entries) => {
-            const entry = entries[0];
-            if (!entry.isIntersecting) {
-                // Scrolled down
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                // At the top
-                header.style.boxShadow = 'none';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            }
-        }, { threshold: 0 });
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-        headerObserver.observe(scrollTrigger);
-    }
+        if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
+            // Scroll vers le bas & on a dépassé le seuil -> Cacher
+            header.classList.add('header-hidden');
+        } else {
+            // Scroll vers le haut ou tout en haut -> Montrer
+            header.classList.remove('header-hidden');
+        }
+
+        // Mettre à jour la dernière position, en évitant les valeurs négatives (rebond iOS)
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, { passive: true });
 
     // Removed unused 3D drift effect (mousemove) to prevent Forced Reflow (Layout Thrashing)
 
@@ -112,5 +111,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 seeMoreBtn.classList.add('hidden'); // Hide button after click
             });
         });
+    }
+    // Reading Progress Bar Logic
+    const article = document.querySelector('article');
+    // On vérifie s'il y a une balise <article> (pages de blog)
+    if (article) {
+        // 1. Injecter le HTML de la barre
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'reading-progress-container';
+
+        const progressBar = document.createElement('div');
+        progressBar.className = 'reading-progress-bar';
+
+        progressContainer.appendChild(progressBar);
+        document.body.prepend(progressContainer);
+
+        // 2. Mettre à jour la barre au scroll
+        window.addEventListener('scroll', () => {
+            // Hauteur totale du contenu de l'article - Hauteur de la fenêtre
+            // On peut aussi baser ça sur toute la page (document.body.scrollHeight)
+            // Ici, basons-nous sur toute la page pour simplifier et couvrir header/footer
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+
+            // Calcul du pourcentage
+            const scrollPercent = (scrollTop / docHeight) * 100;
+
+            // Appliquer la largeur
+            progressBar.style.width = `${scrollPercent}%`;
+        }, { passive: true });
     }
 });
